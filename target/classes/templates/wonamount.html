@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Won Amount</title>
+<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
+</head>
+<body>
+<div class="topnav">
+	<ul>
+	  <li><a href="/">Home</a></li>
+	  <li><a href="/result">Winners List</a></li>
+	  <li><a href="/agentreport">Agent Net Report</a></li>
+	  <li><a href="/subagentreport">Sub Agent Net Report</a></li>
+	 <li class="dropdown">
+	    <a href="javascript:void(0)" class="dropbtn">Settings</a>
+	    <div class="dropdown-content">
+	      <a href="/manageagents">Manage Agents</a>
+	      <a class="active" href="/wonamount">Won Amounts</a>
+	      <a href="/systemsettings">System Settings</a>
+	    </div>
+	  </li>
+	</ul>
+</div>
+<h2>Won Amount Page</h2>
+<h3>Add Won Amount per Category</h3>
+	<form>
+		<div>
+		<p>Category Draw:</p>
+		  <input type="radio" id="42" name="fav_language" value="42"><label for="42">6/42</label>
+		  <input type="radio" id="45" name="fav_language" value="45"><label for="45">6/45</label>
+		  <input type="radio" id="49" name="fav_language" value="49"><label for="49">6/49</label>
+		  <input type="radio" id="55" name="fav_language" value="55"><label for="55">6/55</label>
+		</div><br>
+		<table border="0" cellpadding="10">
+			<tr>
+				<td>Bet Amount:</td>
+				<td>
+					<select name="bet-amount" id="bet-amount">
+					  <option value="10">10</option>
+					  <option value="20">20</option>
+					  <option value="25">25</option>
+					  <option value="50">50</option>
+					  <option value="100">100</option>
+					  <option value="150">150</option>
+					  <option value="200">200</option>
+					  <option value="250">250</option>
+					  <option value="300">300</option>
+					</select>
+				</td>
+			</tr>
+			<tr >
+				<td>Amount Won</td>
+				<td><input type="text"/></td>
+			</tr>	
+			
+			<tr>
+				<td colspan="2"><button type="submit">Save</button></td>
+			</tr>
+		</table>
+		
+		<table id="customers" class="table">
+		  <thead>
+		 
+		  </thead>
+		  <tbody>
+		   <tr>
+		    <th>Category</th>
+		    <th>Bet Amount</th>
+		    <th>Amount Won</th>
+		    <th>ACTION</th>
+		  </tr>
+		  	<tr>
+		    	<td>6/42</td>
+		     	<td>10</td>
+		     	<td>3,100</td>
+		        <td><a>Edit</a>
+ 				&nbsp;&nbsp;&nbsp;&nbsp;
+ 				<a>Delete</a> </td>
+		  </tr>
+		  <tr>
+		    	<td>6/45</td>
+		     	<td>10</td>
+		     	<td>3,400</td>
+		        <td><a>Edit</a>
+ 				&nbsp;&nbsp;&nbsp;&nbsp;
+ 				<a>Delete</a> </td>
+		  </tr>
+		   <tr>
+		    	<td>6/49</td>
+		     	<td>10</td>
+		     	<td>3,700</td>
+		        <td><a>Edit</a>
+ 				&nbsp;&nbsp;&nbsp;&nbsp;
+ 				<a>Delete</a> </td>
+		  </tr>
+		   <tr>
+		    	<td>6/55</td>
+		     	<td>10</td>
+		     	<td>3,900</td>
+		        <td><a>Edit</a>
+ 				&nbsp;&nbsp;&nbsp;&nbsp;
+ 				<a>Delete</a> </td>
+		  </tr>
+		  </tbody>
+	</table>
+	</form>
+	<br>
+</body>
+</html>

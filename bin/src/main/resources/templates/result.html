@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>RESULTS</title>
+<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<script>
+$('#search-btn').click(function() {
+	var x = document.getElementById("lotto-nums"); 
+	console.log(x);
+})
+
+</script>
+</head>
+<body>
+
+<div class="topnav">
+	<ul>
+	  <li><a href="/">Home</a></li>
+	  <li><a class="active" href="/result">Winners List</a></li>
+	  <li><a href="/agentreport">Agent Net Report</a></li>
+	  <li><a href="/subagentreport">Sub Agent Net Report</a></li>
+	  <li class="dropdown">
+	    <a href="javascript:void(0)" class="dropbtn">Settings</a>
+	    <div class="dropdown-content">
+	      <a href="/manageagents">Manage Agents</a>
+	      <a href="/wonamount">Won Amounts</a>
+	      <a href="/systemsettings">System Settings</a>
+	    </div>
+	  </li>
+	</ul>
+</div>
+
+
+    <br/>
+	<br/>
+
+	<label>LOTTO NUMBERS</label>
+	 <br/>
+	<br/>
+	
+	<form action="#" th:action="@{/result}" th:object="${dailywin}" method="post">
+		<table  class="winner-tb"   border="0" cellpadding="10">
+			<tr class="winner-tr">
+				<td class="winner-td"> <input type="number" th:field="*{num1}" width="20" /></td>
+				<td class="winner-td"> <input type="number" th:field="*{num2}" /></td>
+				<td class="winner-td"> <input type="number" th:field="*{num3}" /></td>
+				<td class="winner-td"> <input type="number" th:field="*{num4}" /></td>
+				<td class="winner-td"> <input type="number" th:field="*{num5}" /></td>
+				<td class="winner-td"> <input type="number" th:field="*{num6}" /></td>	
+				<td><button id="search-btn" type="submit">Search</button></td>	
+				
+			</tr>
+		</table>
+	</form>
+	<br/>
+	<br/>
+	
+	<div class="buttons" style="text-align: end;"> 
+		<button styles="text-align: right" type="button">List of Return Bet (RB)</button>	
+		<button styles="text-align: right" type="button">Add Fake Winner</button>
+	</div >
+	
+    <div class="title-header">GAME WINNING RESULT</div >
+    <div id="lotto-nums" class="title-header">[(${lottonum.lottonumbers})]</div >
+    <div class="title-header">Date: December 21, 2021  6/42</div >
+
+	 <table id="customers" class="table">
+		  <thead>
+		 
+		  </thead>
+		  <tbody>
+		   <tr>
+		    <th>AGENT</th>
+		    <th>SUB AGENT</th>
+		    <th>CUSTOMER</th>
+		    <th>PICK NOS.</th>
+		    <th>BET AMT.</th>
+		    <th>RETURN BET</th>
+		    <th>FREE BET</th>
+		    <th>AMOUNT WON</th>
+		    <th>ACTION</th>
+		  </tr>
+		  	<tr th:each="bet : ${listBets}">
+		    	<td th:text="${bet.mainagent}"></td>
+		     	<td th:text="${bet.subagent}"></td>
+  				<td th:text="${bet.playername}"></td>
+		        <td th:text="${bet.num1 + '-' + bet.num2 + '-' + bet.num3}"></td>
+		        <td th:text="${bet.amount}"></td>
+		        <td th:text="${bet.returnbet}"></td >
+		        <td th:text="${bet.freebet}"></td >
+		        <td></td>
+		        <td><button>EDIT</button></td>
+		  </tr>
+		  </tbody>
+	</table>
+	 
+</body>
+</html>

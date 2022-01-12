@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Home</title>
+<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
+<style> 
+    input[type=button], input[type=submit], input[type=reset] {
+        appearance: auto;
+        text-rendering: auto;
+        color: -internal-light-dark(black, white);
+        letter-spacing: normal;
+        word-spacing: normal;
+        line-height: normal;
+        text-transform: none;
+        text-indent: 0px;
+        text-shadow: none;
+        display: inline-block;
+        text-align: center;
+        align-items: flex-start;
+        cursor: default;
+        box-sizing: border-box;
+        background-color: -internal-light-dark(rgb(239, 239, 239), rgb(59, 59, 59));
+        margin: 0em;
+        padding: 1px 6px;
+        border-width: 2px;
+        border-style: outset;
+        border-color: -internal-light-dark(rgb(118, 118, 118), rgb(133, 133, 133));
+        border-image: initial;
+    }
+    </style>
+</head>
+<body>
+
+<div class="topnav">
+	<ul>
+	  <li><a class="active" href="/">Home</a></li>
+	  <li><a href="/result">Winners List</a></li>
+	  <li><a href="/agentreport">Agent Net Report</a></li>
+	  <li><a href="/subagentreport">Sub Agent Net Report</a></li>
+	  <li class="dropdown">
+	    <a href="javascript:void(0)" class="dropbtn">Settings</a>
+	    <div class="dropdown-content">
+	      <a href="/manageagents">Manage Agents</a>
+	      <a href="/wonamount">Won Amounts</a>
+	      <a href="/systemsettings">System Settings</a>
+	    </div>
+	  </li>
+	</ul>
+</div>
+
+	 <h2>Save Entries</h2>
+	  
+    <form action="#" th:action="@{/saveentry}"  method="post">
+<!-- <form> -->
+
+	<div>
+	<p>Category Draw for today:</p>
+	  <input type="radio" th:field="*{betinput.category}"  value="42"><label for="42">6/42</label>
+	  <input type="radio" th:field="*{betinput.category}"  value="45"><label for="45">6/45</label>
+	  <input type="radio" th:field="*{betinput.category}"  value="49"><label for="49">6/49</label>
+	  <input type="radio" th:field="*{betinput.category}"  value="55"><label for="55">6/55</label>
+	</div><br>
+	
+        <textarea id="w3review" name="textarea" rows="8" cols="70" th:field="*{betinput.inputbox}"  style="resize:none;text-align:left" ></textarea>
+        	<table border="0" cellpadding="10">
+					<tr>
+						<td colspan="2">
+							<button type="submit">Save</button>
+						</td>
+						<td colspan="2">
+							<button id="locked-btn" type="button">Locked System</button>
+						</td>
+						<td colspan="2">
+							<button type="reset">Clear Input</button>
+						</td >
+					</tr>
+				</table>
+    </form>
+    
+    <div style="text-align:center" id="myModal" class="modal">
+	  <!-- Modal content -->
+	  <div class="modal-content">
+	    <span class="close">&times;</span>
+	    <p>PASSWORD PROTECTED ENTER PASSWORD:</p>
+	    <form style="margin: 0 auto;">
+	    	<label>PASSWORD:</label>
+	    	<input type="text"/>
+	    	<button type="submit">ENTER</button>
+	    </form >
+	  </div>
+	
+	</div>
+	
+	<div class="buttons" style="text-align: end;"> 
+		<!-- <button styles="text-align: right" type="button">Voids</button>	
+		<button styles="text-align: right" type="button">Void Limit</button>
+		<button styles="text-align: right" type="button">Void Max</button>
+		<button styles="text-align: right" type="button">Void Double</button>
+		<button styles="text-align: right" type="button">Void Duplicate</button> -->
+
+        <input styles="text-align: right" id="clearBtn" type="button" value="CLEAR">
+        <input styles="text-align: right" class="voids" type="button" value="VOID">
+        <input styles="text-align: right" class="voids" type="button" value="VOID-LIMIT">
+        <input styles="text-align: right" class="voids" type="button" value="VOID-MAX">
+        <input styles="text-align: right" class="voids" type="button" value="VOID-DOUBLE">
+        <input styles="text-align: right" class="voids" type="button" value="VOID-DUPLICATE">
+	</div >
+	
+	
+	
+	<br>
+	<form action="#" th:action="@{/multipledelete}"  method="post">
+	<input style="width:-webkit-fill-available;" type="text" id="myInput"  onkeyup="myFunction()" placeholder="Search for names" title="Type in a name">
+	 <table id="customers" class="table">
+			  <thead>
+			 
+			  </thead>
+			  <tbody>
+			   <tr>
+			    <th>AGENT</th>
+			    <th>SUB AGENT</th>
+			    <th>PLAYERNAME</th>
+			    <th>NUM 1</th>
+			    <th>NUM 2</th>
+			    <th>NUM 3</th>
+			    <th>CATEGORY</th>
+			    <th>PICK NOS.</th>
+			    <th>FREE BET</th>
+			    <th>RETURN BET</th>
+			    <th>BET AMOUNT</th>
+			    <th>STATUS</th>
+			    <th></th>
+			  </tr>
+			  <tr th:each="entry : ${viewEntryList}">
+			    	<td th:text="${entry.mainagent}"></td>
+			     	<td th:text="${entry.subagent}"></td>
+	  				<td th:text="${entry.playername}"></td>
+	  				<td th:text="${entry.num1}"></td>
+	  				<td th:text="${entry.num2}"></td>
+	  				<td th:text="${entry.num3}"></td>
+	  				<td th:text="${entry.category}"></td>
+		        	<td th:text="${entry.orderedNums}"></td>
+	  				<td th:text="${entry.freebet}"></td>
+	  				<td th:text="${entry.returnbet}"></td>
+			        <td th:text="${entry.amount}"></td>
+			        <td th:text="${entry.status}"></td>
+			         <td>
+<!-- 					 <a th:href="@{'/edit/' + ${product.id}}">Edit</a> -->
+<!-- 					 &nbsp;&nbsp;&nbsp;&nbsp; -->
+<!-- 					 <a th:href="@{'/delete/' + ${product.id}}">Delete</a> -->
+ 						<a th:href="@{'/edit/'+${entry.entryid}}">Edit</a>
+ 						 &nbsp;&nbsp;&nbsp;&nbsp;
+ 						<a th:href="@{'/delete/'+${entry.entryid}}">Delete</a> 
+<!--  						<input type="checkbox" name="checkbox" th:field=${entry.checkbox} value="true"/> -->
+<!--  						<input type="checkbox" th:field=${entry.checkbox}  value=true/> -->
+<!--  						<span th:each="id : ${idList}"> -->
+							<input  type="checkbox" th:field="*{delbttn.longList}" th:value="${entry.entryid}"/>
+<!--                        </span> -->
+<!-- 							<input type="checkbox"  th:field="*{user.longColors}" th:value="${color}" /> -->
+							
+					 </td>
+			  	</tr>
+			  </tbody>
+		</table>
+		<br>
+		<button style="float:right" type="submit">DELETE ALL</button>
+		</form>
+		<div>&nbsp;</div>
+		<div style="text-align:center"><i>Sorted by [[${sortField}]] in [[${sortDir}]] order</i></div>
+		<div>&nbsp;</div>
+<!-- 		<div th:if="${totalPages > 1}" style="text-align:center"> -->
+<!-- 		Total Items: [[${totalItems}]] -->
+<!-- 		&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp; -->
+		
+<!-- 		<a th:if="${currentPage > 1}" th:href="@{'/home/1' + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">First</a> -->
+<!-- 		<span th:unless="${currentPage > 1}">First</span> -->
+<!-- 		&nbsp;&nbsp; -->
+		
+<!-- 		<a th:if="${currentPage > 1}" th:href="@{'/home/' + ${currentPage - 1} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Previous</a> -->
+<!-- 		<span th:unless="${currentPage > 1}">Previous</span> -->
+		
+<!-- 		&nbsp;&nbsp; -->
+		
+<!-- 		<span th:each="i: ${#numbers.sequence(1, totalPages)}"> -->
+<!-- 			<a th:if="${currentPage != i}" th:href="@{'/home/' + ${i} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">[[${i}]]</a> -->
+<!-- 			<span th:unless="${currentPage != i}">[[${i}]]</span> -->
+<!-- 			&nbsp; -->
+<!-- 		</span> -->
+		
+<!-- 		<a th:if="${currentPage < totalPages}" th:href="@{'/home/' + ${currentPage + 1} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Next</a> -->
+<!-- 		<span th:unless="${currentPage < totalPages}">Next</span> -->
+<!-- 		&nbsp;&nbsp; -->
+		
+<!-- 		<a th:if="${currentPage < totalPages}" th:href="@{'/home/' + ${totalPages} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Last</a> -->
+<!-- 		<span th:unless="${currentPage < totalPages}">Last</span> -->
+	</div>
+    <br/>
+ <script>
+// Get the modal
+var modal = document.getElementById("myModal");
+
+// Get the button that opens the modal
+var btn = document.getElementById("locked-btn");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks the button, open the modal 
+btn.onclick = function() {
+  modal.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+  modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+document.getElementById("clearBtn").addEventListener("click", function() {
+    var value = this.value;
+        document.getElementById("myInput").value = "";
+        myFunction();
+});
+// document.querySelector('#myInput').addEventListener('keyup', filterTable, false);
+var voidsBtn = document.querySelectorAll('.voids');
+
+for (var i = 0; i < voidsBtn.length; i++) {
+    voidsBtn[i].addEventListener('click', function() {
+        var value = this.value;
+        document.getElementById("myInput").value = value;
+        myFunction();
+    });
+}
+
+function myFunction() {
+  var input, filter, table, tr, td, i, txtValue;
+  input = document.getElementById("myInput");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("customers");
+  tr = table.getElementsByTagName("tr");
+
+	  for (i = 0; i < tr.length; i++) {
+	    td = tr[i].getElementsByTagName("td")[2];
+        td2 = tr[i].getElementsByTagName("td")[11];
+	    if (td || td2) {
+	      txtValue = td.textContent || td.innerText;
+	      txtValue2 = td2.textContent || td2.innerText;
+	      if (txtValue.toUpperCase().indexOf(filter) > -1 || txtValue2.toUpperCase().indexOf(filter) > -1) {
+	        tr[i].style.display = "";
+	      } else {
+	        tr[i].style.display = "none";
+	      }
+	    }       
+	  }
+}
+</script>
+</body>
+</html>

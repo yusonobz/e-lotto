@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Manage Agents</title>
+<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
+</head>
+<body>
+<div class="topnav">
+	<ul>
+	  <li><a href="/">Home</a></li>
+	  <li><a href="/result">Winners List</a></li>
+	  <li><a href="/agentreport">Agent Net Report</a></li>
+	  <li><a href="/subagentreport">Sub Agent Net Report</a></li>
+	 <li class="dropdown">
+	    <a href="javascript:void(0)" class="dropbtn">Settings</a>
+	    <div class="dropdown-content">
+	      <a class="active" href="/manageagents">Manage Agents</a>
+	      <a href="/wonamount">Won Amounts</a>
+	      <a href="/systemsettings">System Settings</a>
+	    </div>
+	  </li>
+	</ul>
+</div>
+<h2>Manage Agents Page</h2>
+	<h3>Add Head Agent</h3>
+	<form>
+		<table border="0" cellpadding="10">
+			<tr >
+				<td>Head Agent Name</td>
+				<td><input type="text"/></td>
+			</tr>	
+			<tr>
+				<td colspan="2"><button type="submit">Save</button></td>
+			</tr>
+		</table>
+	</form>
+	<br>
+	
+	
+	<h3>Add Sub Agent</h3>
+	<form>
+		<table border="0" cellpadding="10">
+			<tr>
+				<td>Head Agent:</td>
+				<td>
+					<select name="head-agent" id="head-agent">
+					  <option value="1">MELODY</option>
+					  <option value="2">CALIX</option>
+					  <option value="3">MAIN AGENT 1</option>
+					  <option value="4">MAIN AGENT 2</option>
+					</select>
+				</td>
+			</tr>
+			<tr >
+				<td>Sub Agent Name</td>
+				<td><input type="text"/></td>
+			</tr>	
+			
+			<tr>
+				<td colspan="2"><button type="submit">Save</button></td>
+			</tr>
+		</table>
+	</form>
+	
+	<table id="customers" class="table">
+		  <thead>
+		 
+		  </thead>
+		  <tbody>
+		   <tr>
+		    <th>MAIN AGENT</th>
+		    <th>SUB AGENT</th>
+		    <th>ACTION</th>
+		  </tr>
+		  	<tr>
+		    	<td>MELODY</td>
+		     	<td>AMANDA</td>
+		        <td><a>Edit</a>
+ 				&nbsp;&nbsp;&nbsp;&nbsp;
+ 				<a>Delete</a> </td>
+		  </tr>
+		  <tr>
+		    	<td>MELODY</td>
+		     	<td>NATHAN</td>
+		        <td><a>Edit</a>
+ 				&nbsp;&nbsp;&nbsp;&nbsp;
+ 				<a>Delete</a> </td>
+		  </tr>
+		   <tr>
+		    	<td>CALIX</td>
+		     	<td>JACOB</td>
+		        <td><a>Edit</a>
+ 				&nbsp;&nbsp;&nbsp;&nbsp;
+ 				<a>Delete</a> </td>
+		  </tr>
+		  </tbody>
+	</table>
+
+</body>
+</html>

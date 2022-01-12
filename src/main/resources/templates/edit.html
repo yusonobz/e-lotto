@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Edit Entry</title>
+</head>
+<body>
+	<div align="center">
+		<h1>Edit Entry</h1>
+		<br/>
+		<form action="#" th:action="@{/updateentry}"  method="post">
+<!-- 		<form action="#" th:action="@{/save}" method="post"> -->
+			<table border="0" cellpadding="10">
+				<tr >
+					<td>Entry ID:</td>
+					<td ><input type="text" th:field="*{entry.entryid}" readonly="readonly" hidden style="background-color: grey;" /></td>
+<!-- 					<td><input type="text" readonly="readonly" /></td> -->
+				</tr>		
+				<tr>
+					<td>Playername:</td>
+					<td><input type="text" th:field="*{entry.playername}" readonly="readonly" style="background-color: grey;"/></td>
+				</tr>		
+				<tr>
+					<td>Main Agent:</td>
+					<td><input type="text" th:field="*{entry.mainagent}" readonly="readonly" style="background-color: grey;"/></td>
+<!-- 					<td><input type="text"  readonly="readonly"/></td> -->
+				</tr>
+				<tr>
+					<td>Sub Agent:</td>
+					<td><input type="text" th:field="*{entry.subagent}" readonly="readonly" style="background-color: grey;"/></td>
+<!-- 					<td><input type="text" readonly="readonly"/></td> -->
+				</tr>				
+				<tr>
+					<td>Num 1</td>
+					<td><input type="number" th:field="*{entry.num1}" /></td>
+<!-- 					<td><input type="text"  /></td> -->
+				</tr>		
+				<tr>
+					<td>Num 2</td>
+					<td><input type="number" th:field="*{entry.num2}" /></td>
+<!-- 					<td><input type="text"  /></td> -->
+				</tr>	
+				<tr>
+					<td>Num 3</td>
+					<td><input type="number" th:field="*{entry.num3}" /></td>
+<!-- 					<td><input type="text" /></td> -->
+				</tr>	
+				<tr>
+					<td>Free Bet:</td>
+					<td><input type="number" th:field="*{entry.freebet}" /></td>
+<!-- 					<td><input type="text" /></td> -->
+				</tr>
+				<tr>
+					<td>Return Bet:</td>
+					<td><input type="number" th:field="*{entry.returnbet}" /></td>
+<!-- 					<td><input type="text" /></td> -->
+				</tr>			
+				<tr>
+					<td>Bet Amount:</td>
+					<td><input type="number" th:field="*{entry.amount}" /></td>
+<!-- 					<td><input type="text" /></td> -->
+				</tr>	
+				<tr>
+					<td>Bet Status:</td>
+					<td>
+						<select th:field="${entry.status}">
+						  <option  value="VOID_LIMIT">VOID LIMIT</option>
+						  <option value="VOID_MAX">VOID MAX</option>
+						  <option value="VOID_DOUBLE">VOID DOUBLE</option>
+						  <option value="VOID_DUPLICATE">VOID DUPLICATE</option>
+						  <option value="GOOD_BET">GOOD BET</option>
+						</select>
+					</td>
+<!-- 					<td><input type="text" /></td> -->
+				</tr>				
+				<tr>
+					<td colspan="2"><button type="submit">Save</button></td>
+				</tr>
+			</table>
+		</form>
+	</div>
+</body>
+</html>
